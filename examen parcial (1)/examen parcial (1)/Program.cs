@@ -1,67 +1,60 @@
 ﻿using examen_parcial__1_;
-Menus menus = new Menus();
-Interfaz algoDiferente = new Interfaz();
-List<ClaseBase> listaclaseBases = new List<ClaseBase>();
-List<Interfaz> interfazs = new List<Interfaz>();
+Pedidos pedidos = new Pedidos();
+Cliente cliente = new Cliente();
+List<Cliente> listaClientes = new List<Cliente>();
+List<Pedidos> listaPedidos = new List<Pedidos>();
 
-    bool opcionWhile = true;
-    while (opcionWhile)
-
-    {
-        int opcion = 0;
-        int opcionSwitch2 = 0;
-        Console.Write("ingrese un numero");
-        switch (opcion = LlenarNumeroEntero())
+int opcion = 0;
+bool opcionWhile = true;
+do
+{
+    Menu();
+    Console.Write("Ingrese una opcion: ");
+    switch (opcion = LlenarNumeroEntero())
         {
-            case 1:
-                Console.WriteLine("REGISTRAR CLIENTE");
-                algoDiferente.AgregarObjeto();
-                ClaseBase claseBase = new ClaseBase();
-                claseBase.Agregar();
-                listaclaseBases.Add(claseBase);
+        case 1:
+            Console.WriteLine("Registrar Cliente");
+                Cliente nuevoCliente = new Cliente();
+                nuevoCliente.RegistrarCliente();
+                listaClientes.Add(nuevoCliente);
                 break;
 
             case 2:
-                Console.WriteLine("REGISTRAR RESERVAS");
+                Console.WriteLine("Registrar Cliente Premium");
+                ClientePremium nuevoClientePremium = new ClientePremium();
+                nuevoClientePremium.RegistrarCliente();
+                listaClientes.Add(nuevoClientePremium);
                 break;
-
             case 3:
-                Console.WriteLine("MOSTRAR DETALLES DEL CLIENTE Y RESERVAS");
-                Console.WriteLine("[ 1 ] DETALLES DE CLIENTES");
-                Console.WriteLine("[ 2 ] DETALLES DE RECETAS");
-                switch (opcionSwitch2 = LlenarNumeroEntero())
-                {
-                    case 1:
-                        Console.WriteLine("DETALLES DE CLIENTE");
-                      
-                        break;
-                    case 2:
-                        Console.WriteLine("DETALLES DE  RESERVA");
-                        
-                        break;
-                }
-                break;
+                Console.WriteLine("Registrar Pedido");
+                Pedidos nuevoPedido = new Pedidos();
+                nuevoPedido.RegistrarPedido(pedidos.NumPedido(listaPedidos), listaClientes);
+                listaPedidos.Add(nuevoPedido);
+            break;
             case 4:
-                Console.WriteLine("BUSCAR CLIENTE O RESERVAS");
-                switch (opcionSwitch2 = LlenarNumeroEntero())
-                {
-                    case 1:
-                        Console.WriteLine("BUSCAR CLIENTE");
-                        
-                        break;
-                    case 2:
-                        Console.WriteLine("BUSCAR RESERVA");
-                        
-                        break;
-                }
-                break;
-
+            Console.WriteLine("Mostrar Detalles de Clientes");
+            
+            break;
+            cliente.MostrarClientes(listaClientes);
             case 5:
                 opcionWhile = false;
                 break;
         }
-    }
+    
+} while (opcionWhile);
 
+static void Menu() 
+{
+    Console.WriteLine("\t\t\tMenu Principal");
+    Console.WriteLine("1. Registrar Cliente");
+    Console.WriteLine("2. Registrar Cliente Premium");
+    Console.WriteLine("3. Registrar Pedido");
+    Console.WriteLine("4. Mostrar Detalles de Clientes");
+    Console.WriteLine("5. Mostrar Detalles de Pedidos");
+    Console.WriteLine("6. Buscar Clientes por Nombre");
+    Console.WriteLine("6. Buscar Pedidos por Numero");
+    Console.WriteLine("6. Salir");
+}
     static int LlenarNumeroEntero()
     {
         int numeroEntero = 0;
