@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace examen_parcial__1_
 {
-    internal class Menus
+    public class Menus
     {
 
         public Menus()

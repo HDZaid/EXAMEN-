@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace examen_parcial__1_
 {
-    internal class ClaseHija: ClaseBase
+    public class ClaseHija: ClaseBase
     {
         public int MyProperty { get; set; }
         

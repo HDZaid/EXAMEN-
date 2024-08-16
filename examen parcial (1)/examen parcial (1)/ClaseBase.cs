@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace examen_parcial__1_
 {
-    internal class ClaseBase
+    public class ClaseBase
     {
         public int ID { get; set; }
         public string Nombre { get; set; }

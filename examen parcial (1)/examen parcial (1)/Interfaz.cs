@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace examen_parcial__1_
 {
-    internal class Interfaz
+    public class Interfaz
     {
         public int MyProperty { get; set; }
         public string Algo { get; set; }
