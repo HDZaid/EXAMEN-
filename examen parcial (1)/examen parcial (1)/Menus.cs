@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-//CTOR = constructor
-//2 x [ctrl + R]
+//CLASE PARA MOSTRAR MENUS Y OTRAS FUNCIONES 
 
 
 namespace examen_parcial__1_
@@ -19,10 +17,10 @@ namespace examen_parcial__1_
         }
         public void MenuPrincipal()
         {
-            Console.WriteLine("[ 1 ] opcion  ");
-            Console.WriteLine("[ 2 ] opcion  ");
-            Console.WriteLine("[ 3 ] opcion  ");
-            Console.WriteLine("[ 4 ] opcion  ");
+            Console.WriteLine("[ 1 ] opcion crear cliente ");
+            Console.WriteLine("[ 2 ] opcion  registrar pedidos");
+            Console.WriteLine("[ 3 ] opcion  mostrar detalles");
+            Console.WriteLine("[ 4 ] opcion  buscar cliente o pedido");
         }
 
         public void MenuSecundario()

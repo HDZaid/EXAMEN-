@@ -1,97 +1,118 @@
 ﻿using examen_parcial__1_;
+using System.Collections.Generic;
 Menus menus = new Menus();
-Interfaz algoDiferente = new Interfaz();
-List<ClaseBase> listaclaseBases = new List<ClaseBase>();
-List<Interfaz> interfazs = new List<Interfaz>();
+List<Pedidos> ListaPedidos = new List<Pedidos>();
+List<ClaseBase> listaClaseBase = new List<ClaseBase>();
 
     bool opcionWhile = true;
     while (opcionWhile)
-
     {
         int opcion = 0;
         int opcionSwitch2 = 0;
-        Console.Write("ingrese un numero");
-        switch (opcion = LlenarNumeroEntero())
+        Console.WriteLine("ingrese un numero");
+        menus.MenuPrincipal();
+        switch (opcion = menus.LlenarNumeroEntero())
         {
             case 1:
-                Console.WriteLine("REGISTRAR CLIENTE");
-                algoDiferente.AgregarObjeto();
-                ClaseBase claseBase = new ClaseBase();
-                claseBase.Agregar();
-                listaclaseBases.Add(claseBase);
-                break;
+            Console.WriteLine("[ 1 ]  CLIENTE Estandar");
+            Console.WriteLine("[ 2 ] Cliente PREMIUM");
+            switch (opcionSwitch2 = menus.LlenarNumeroEntero())
+            {
+                case 1:
+                    ClienteEstandar clienteEstandar = new ClienteEstandar();
+                    clienteEstandar.AgregarCliente();
+                    listaClaseBase.Add(clienteEstandar);
+                    break;
+                case 2:
+                   ClientePremium clientePremium = new ClientePremium();
+                    clientePremium.AgregarCliente();
+                    listaClaseBase.Add(clientePremium);
+                    break;
+            }
+            break;
 
             case 2:
-                Console.WriteLine("REGISTRAR RESERVAS");
-                break;
+            Pedidos pedidos = new Pedidos();
+            Console.WriteLine("Ingrese el nombre del cliente al que se le asignara el pedido:");
+            string nombreCliente = Console.ReadLine();
+            pedidos.AgregarPedidos(listaClaseBase, nombreCliente);
+            ListaPedidos.Add(pedidos);
+            break;
 
             case 3:
-                Console.WriteLine("MOSTRAR DETALLES DEL CLIENTE Y RESERVAS");
-                Console.WriteLine("[ 1 ] DETALLES DE CLIENTES");
-                Console.WriteLine("[ 2 ] DETALLES DE RECETAS");
-                switch (opcionSwitch2 = LlenarNumeroEntero())
+            Console.WriteLine("----------------------------LISTA CLIENTES:---------------------------");
+            Console.WriteLine("----------------------------------------------------------------------");
+            if (listaClaseBase.Count > 0)
+            {
+                foreach(ClaseBase clientes in listaClaseBase)
                 {
-                    case 1:
-                        Console.WriteLine("DETALLES DE CLIENTE");
-                      
-                        break;
-                    case 2:
-                        Console.WriteLine("DETALLES DE  RESERVA");
-                        
-                        break;
+                    clientes.MostrarInformacionCliente();
                 }
-                break;
-            case 4:
-                Console.WriteLine("BUSCAR CLIENTE O RESERVAS");
-                switch (opcionSwitch2 = LlenarNumeroEntero())
+            }
+            else
+            {
+                Console.WriteLine("No hay clientes que mostrar:");
+            }
+            Console.WriteLine("----------------------------------------------------------------------");
+            Console.WriteLine("----------------------------LISTA PEDIDOS:---------------------------");
+            
+            if (ListaPedidos.Count > 0)
+            {
+                
+                foreach (Pedidos pedido in ListaPedidos)
                 {
-                    case 1:
-                        Console.WriteLine("BUSCAR CLIENTE");
-                        
-                        break;
-                    case 2:
-                        Console.WriteLine("BUSCAR RESERVA");
-                        
-                        break;
+                    pedido.mostrarInformacionPedidos();
                 }
-                break;
+            }
+            else
+            {
+                Console.WriteLine("No hay pedidos registrados.");
+            }
 
+            break;
+            case 4:
+            Console.WriteLine("[ 1 ] BUSCAR CLIENTE");
+            Console.WriteLine("[ 2 ] BUSCAR PEDIDO");
+            switch (opcionSwitch2 = menus.LlenarNumeroEntero())
+            {
+                case 1:
+                    string nombreBuscado = Console.ReadLine();
+                    foreach (var clienteEncontrado in listaClaseBase)
+                    {
+                        if (clienteEncontrado.Nombre == nombreBuscado)
+                        {
+                            clienteEncontrado.MostrarInformacionCliente();
+                        }
+                        else
+                        {
+                            Console.WriteLine("NO HAY NINGUN CLIENTE CON ESE NOMBRE");
+                        }
+                    }
+                    
+                    break;
+                case 2:
+                    int numeroBuscado = menus.LlenarNumeroEntero();
+                    foreach(var pedidoEncontrado in ListaPedidos)
+                    {
+                        if(pedidoEncontrado.NumeroUnico == numeroBuscado)
+                        {
+                            pedidoEncontrado.mostrarInformacionPedidos();
+                        }
+                        else
+                        {
+                            Console.WriteLine("NO SE ENCONTRO NINGUN PEDIDO CON ESE NUMERO");
+
+                        }
+                    }
+                    break;
+            }
+            break;
             case 5:
                 opcionWhile = false;
                 break;
         }
     }
 
-    static int LlenarNumeroEntero()
-    {
-        int numeroEntero = 0;
-        bool valido = false;
-        while (!valido)
-        {
-            try
-            {
-                while (numeroEntero <= 0)
-                {
-                    numeroEntero = Convert.ToInt32(Console.ReadLine());
-                    if (numeroEntero <= 0)
-                    {
-                        Console.Write("No puede ingresar numeros negativos...\nIntente de nuevo: ");
-                    }
-                    valido = true;
-                }
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("[!] Error no puede ingresar letras...");
-                Console.Write("> Intente de nuevo: ");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("[!] Error desconocido... " + ex);
-                Console.Write("> Intente de nuevo: ");
-            }
-        }
-        return numeroEntero;
-    }
+
 
 
