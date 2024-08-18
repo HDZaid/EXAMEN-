@@ -17,10 +17,17 @@ namespace examen_parcial__1_
         public Pedidos() { }
         public virtual void MostrarInformacionPedido(Pedidos pedido)
         {
-            Console.WriteLine($"Numero pedido: {pedido.Numero}");
-            Console.WriteLine($"Fecha del pedido: {pedido.Fecha}");
-            Console.WriteLine($"Total del pedido: {pedido.Total}");
-            ClientePedido.MostrarInformacionCliente(pedido.ClientePedido);
+            if (pedido != null) {
+                Console.WriteLine($"Numero pedido: {pedido.Numero}");
+                Console.WriteLine($"Fecha del pedido: {pedido.Fecha}");
+                Console.WriteLine($"Total del pedido: {pedido.Total}");
+                ClientePedido.MostrarInformacionCliente(pedido.ClientePedido);
+            }
+            else 
+            {
+                Console.WriteLine("Regresando al menu...");
+                return;
+            }
         }
         public void MostrarPedidos(List<Pedidos> listaPedidos) 
         {
@@ -29,6 +36,22 @@ namespace examen_parcial__1_
                 MostrarInformacionPedido(pedido);
             }
         }
+        public Pedidos BuscarPedido(List<Pedidos> listaPedidos)
+        {
+            Console.Write("Ingrese el numero del pedido: ");
+            int clienteBuscar = LlenarNumeroEntero();
+            Pedidos pedido = listaPedidos.Find(p => p.Numero.Equals(clienteBuscar));
+            if (pedido != null)
+            {
+                return pedido;
+            }
+            else
+            {
+                Console.WriteLine("[!] Pedido no encontrado.");
+                return null;
+            }
+        }
+
         public int NumPedido(List<Pedidos> listaPedidos)
         {
             Console.Write("> Ingrese el numero de pedido: ");
