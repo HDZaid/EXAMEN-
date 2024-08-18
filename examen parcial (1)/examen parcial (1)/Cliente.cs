@@ -20,7 +20,6 @@ namespace examen_parcial__1_
             this.Nombre = nombre;
             this.Correo = correo;   
             this.Direccion = direccion;
-            this.Descuento = 0;
         }
 
         public virtual void RegistrarCliente()
@@ -45,7 +44,6 @@ namespace examen_parcial__1_
             this.Direccion = direccionCliente;
             this.Fecha = new(año, mes, dia);
             Console.WriteLine("[!] Cliente registrado con exito...");
-
         }
         public Cliente BuscarCliente(List<Cliente> listaClientes)
         {
@@ -66,27 +64,30 @@ namespace examen_parcial__1_
         {
             if (cliente != null)
             {
-                Console.WriteLine($"Nombre del Cliente: {Nombre}");
-                Console.WriteLine($"Correo: {Correo}");
-                Console.WriteLine($"Direccion: {Direccion}");
-                Console.WriteLine($"Fecha de Registro: {Fecha}");
+                Console.WriteLine($"Nombre del Cliente: {cliente.Nombre}");
+                Console.WriteLine($"Correo: {cliente.Correo}");
+                Console.WriteLine($"Direccion: {cliente.Direccion}");
+                Console.WriteLine($"Fecha de Registro: {cliente.Fecha}");
             }
-            else 
+            else
             {
                 return;
             }
         }
-        public virtual double CalcularDescuento() { 
-            return Descuento;
+        public virtual double CalcularDescuento(Cliente clienteActual, double totalCuenta) 
+        {
+            Console.WriteLine($"Cliente regular, no aplica descuento... \nTotal: Q"+totalCuenta); 
+            return totalCuenta - (totalCuenta*clienteActual.Descuento);
         }
         public virtual void MostrarClientes(List<Cliente> listaClientes)
         {
+            Console.WriteLine("\t\t\t // Informacion de Clientes Registrados //");
             foreach (var cliente in listaClientes) 
-            { 
+            {
                 cliente.MostrarInformacionCliente(cliente);
+                Console.WriteLine();
             }
         }
-
 
         //Metodos de entrada usuario
         public int LlenarNumeroEntero()

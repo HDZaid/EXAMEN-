@@ -13,12 +13,21 @@ namespace examen_parcial__1_
         public int Numero { get; set; }
         public DateOnly Fecha { get; set; }
         public Cliente ClientePedido { get; set; } = new Cliente();
+        public double Total { get; set; }
         public Pedidos() { }
-        public virtual void MostrarInformacionPedido()
+        public virtual void MostrarInformacionPedido(Pedidos pedido)
         {
-            Console.WriteLine($"Numero pedido: {Numero}");
-            Console.WriteLine($"Fecha del pedido: {Fecha}");
-            ClientePedido.MostrarInformacionCliente(ClientePedido);
+            Console.WriteLine($"Numero pedido: {pedido.Numero}");
+            Console.WriteLine($"Fecha del pedido: {pedido.Fecha}");
+            Console.WriteLine($"Total del pedido: {pedido.Total}");
+            ClientePedido.MostrarInformacionCliente(pedido.ClientePedido);
+        }
+        public void MostrarPedidos(List<Pedidos> listaPedidos) 
+        {
+            foreach (var pedido in listaPedidos)
+            {
+                MostrarInformacionPedido(pedido);
+            }
         }
         public int NumPedido(List<Pedidos> listaPedidos)
         {
@@ -36,7 +45,6 @@ namespace examen_parcial__1_
         }
         public virtual void RegistrarPedido(int numeroPedido, List<Cliente> listaClientes)
         {
-            
             if (numeroPedido >= 0)
             {
                 Console.WriteLine("Ingrese la fecha de pedido...");
@@ -62,7 +70,10 @@ namespace examen_parcial__1_
                 this.Numero = numeroPedido;
                 this.Fecha = new(año, mes, dia);
                 this.ClientePedido = clienteActual;
-                Console.WriteLine("Cliente Registrado con Exito");
+                Console.Write("Ingrese el monto: ");
+                double montoCliente = LlenarNumeroDouble();
+                Console.WriteLine("Pedido registrado con Exito");
+                this.Total = clienteActual.CalcularDescuento(clienteActual, montoCliente);
             }
             else 
             {
@@ -70,6 +81,7 @@ namespace examen_parcial__1_
                 return;
             }
         }
+        //Metodos de introduccion de datos de usuario
         public int LlenarNumeroEntero()
         {
             int numeroEntero = 0;
@@ -101,7 +113,32 @@ namespace examen_parcial__1_
             }
             return numeroEntero;
         }
-        public string LlenarString()
+        public double LlenarNumeroDouble()
+        {
+            double numeroDouble = 0;
+            bool valido = false;
+            while (!valido)
+            {
+                try
+                {
+                    numeroDouble = Convert.ToDouble(Console.ReadLine());
+                    valido = true;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("[!] Error no puede ingresar letras...");
+                    Console.Write("> Intente de nuevo: ");
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("[!] Error desconocido... ");
+                    Console.Write("> Intente de nuevo: ");
+                }
+            }
+            return numeroDouble;
+        }
+    
+    public string LlenarString()
         {
             string cadena = string.Empty;
             bool valido = false;

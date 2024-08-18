@@ -13,31 +13,48 @@ do
     switch (opcion = LlenarNumeroEntero())
         {
         case 1:
-            Console.WriteLine("Registrar Cliente");
+            Console.WriteLine("\t\t\t // Registrar Cliente //");
                 Cliente nuevoCliente = new Cliente();
                 nuevoCliente.RegistrarCliente();
                 listaClientes.Add(nuevoCliente);
                 break;
 
             case 2:
-                Console.WriteLine("Registrar Cliente Premium");
+                Console.WriteLine("\t\t\t// Registrar Cliente Premium //");
                 ClientePremium nuevoClientePremium = new ClientePremium();
                 nuevoClientePremium.RegistrarCliente();
                 listaClientes.Add(nuevoClientePremium);
                 break;
             case 3:
-                Console.WriteLine("Registrar Pedido");
+                Console.WriteLine("\t\t\t // Registrar Pedido //");
                 Pedidos nuevoPedido = new Pedidos();
                 nuevoPedido.RegistrarPedido(pedidos.NumPedido(listaPedidos), listaClientes);
                 listaPedidos.Add(nuevoPedido);
             break;
             case 4:
-            Console.WriteLine("Mostrar Detalles de Clientes");
-            
-            break;
+            //creo que se puede hacer desde pedido, con un metodo en pedido anidado de cliente...
+            Console.WriteLine("\t\t\t// Mostrar Detalles de Clientes //");
             cliente.MostrarClientes(listaClientes);
+            break;
             case 5:
-                opcionWhile = false;
+            Console.WriteLine("\t\t\t // Mostrar Detalles de Pedidos //");
+            pedidos.MostrarPedidos(listaPedidos);
+            break;
+            case 6:
+            Console.WriteLine("\t\t\t // Buscar Clientes por Nombre //");
+            cliente.MostrarInformacionCliente(cliente.BuscarCliente(listaClientes));
+            break;
+            case 7:
+            Console.WriteLine("\t\t\t // Buscar Pedidos por Numero //");
+
+            break;
+            case 8:
+            Console.WriteLine("Salir");
+            opcionWhile = false;
+            break;
+            default:
+            Console.WriteLine("Opcion Incorrecta...\nRegresando al menu...");
+            Console.Clear();
                 break;
         }
     
@@ -52,8 +69,8 @@ static void Menu()
     Console.WriteLine("4. Mostrar Detalles de Clientes");
     Console.WriteLine("5. Mostrar Detalles de Pedidos");
     Console.WriteLine("6. Buscar Clientes por Nombre");
-    Console.WriteLine("6. Buscar Pedidos por Numero");
-    Console.WriteLine("6. Salir");
+    Console.WriteLine("7. Buscar Pedidos por Numero");
+    Console.WriteLine("8. Salir");
 }
     static int LlenarNumeroEntero()
     {
