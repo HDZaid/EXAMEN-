@@ -33,31 +33,31 @@ do
             break;
             case 4:
             //creo que se puede hacer desde pedido, con un metodo en pedido anidado de cliente...
-            Console.Clear();
-            Console.WriteLine("\t\t\t// Mostrar Detalles de Clientes //");
-            cliente.MostrarClientes(listaClientes);
+                Console.Clear();
+                Console.WriteLine("\t\t\t// Mostrar Detalles de Clientes //");
+                cliente.MostrarClientes(listaClientes);
             break;
             case 5:
-            Console.Clear();
-            Console.WriteLine("\t\t\t // Mostrar Detalles de Pedidos //");
-            pedidos.MostrarPedidos(listaPedidos);
+                Console.Clear();
+                Console.WriteLine("\t\t\t // Mostrar Detalles de Pedidos //");
+                pedidos.MostrarPedidos(listaPedidos);
             break;
             case 6:
-            Console.WriteLine("\t\t\t // Buscar Clientes por Nombre //");
-            cliente.MostrarInformacionCliente(cliente.BuscarCliente(listaClientes));
+                Console.WriteLine("\t\t\t // Buscar Clientes por Nombre //");
+                cliente.MostrarInformacionCliente(cliente.BuscarCliente(listaClientes));
             break;
             case 7:
-            Console.Clear();
-            Console.WriteLine("\t\t\t // Buscar Pedidos por Numero //");
-            pedidos.MostrarInformacionPedido(pedidos.BuscarPedido(listaPedidos));
+                Console.Clear();
+                Console.WriteLine("\t\t\t // Buscar Pedidos por Numero //");
+                pedidos.MostrarInformacionPedido(pedidos.BuscarPedido(listaPedidos));
             break;
             case 8:
-            Console.WriteLine("Salir");
-            opcionWhile = false;
+                Console.WriteLine("Salir");
+                opcionWhile = false;
             break;
             default:
-            Console.WriteLine("Opcion Incorrecta...\nRegresando al menu...");
-            Console.Clear();
+                Console.Clear();
+                Console.WriteLine("Opcion Incorrecta...\nRegresando al menu...");
                 break;
         }
     
